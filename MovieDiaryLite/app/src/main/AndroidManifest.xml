@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MovieDiaryLite">
-        <activity android:name=".TvSeriesFunctionsActivity"></activity>
+        <activity android:name=".AddMovieActivity"></activity>
+        <activity android:name=".TvSeriesFunctionsActivity" />
         <activity android:name=".MovieFunctionsActivity" />
         <activity
             android:name=".HomeActivity"

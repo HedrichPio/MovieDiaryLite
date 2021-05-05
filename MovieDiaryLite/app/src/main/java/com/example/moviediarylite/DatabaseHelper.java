@@ -6,18 +6,25 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.moviediarylite.comparators.AlphabeticalSort;
+
 import java.util.ArrayList;
 
     public class DatabaseHelper extends SQLiteOpenHelper {
 
         //initialise db name, table name and columns
         public static final String DATABASE_NAME = "movie.db";
-        public static final String TABLE_NAME = "movies_table";
+        public static final String TABLE_NAME_MOV = "movies_table";
         public static final String COL_1 = "ID";
         public static final String COL_2 = "TITLE";
         public static final String COL_3 = "YEAR";
         public static final String COL_4 = "GENRE";
-        public static final String COL_8 = "FAVOURITES";
+        public static final String COL_5 = "RATING";
+        public static final String COL_6 = "FAVOURITE";
+
+        public static final String TABLE_NAME_TV = "tvshows_table";
+        public static final String COL_7 = "SEASON";
+
 
         static final private int DB_VER = 1;
 
@@ -34,15 +41,21 @@ import java.util.ArrayList;
         @Override
         public void onCreate(SQLiteDatabase db) {
 
-            db.execSQL("create table "+ TABLE_NAME +
+            db.execSQL("create table "+ TABLE_NAME_MOV +
                     "(ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     "TITLE TEXT, " +
                     "YEAR INTEGER, " +
-                    "DIRECTOR TEXT, " +
-                    "ACTORS TEXT, " +
-                    "RATINGS INTEGER, " +
-                    "REVIEW TEXT," +
-                    "FAVOURITES INTEGER DEFAULT 0)");
+                    "GENRE TEXT, " +
+                    "RATING INTEGER, " +
+                    "FAVOURITE TEXT)");
+
+            db.execSQL("create table "+ TABLE_NAME_TV +
+                    "(ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "TITLE TEXT, " +
+                    "SEASON INTEGER, " +
+                    "GENRE TEXT, " +
+                    "RATING INTEGER, " +
+                    "FAVOURITE TEXT)");
 
         }
 
@@ -50,7 +63,8 @@ import java.util.ArrayList;
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
-            db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+            db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_MOV);
+            db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_TV);
             onCreate(db);
 
         }
@@ -65,13 +79,11 @@ import java.util.ArrayList;
 
             contentValues.put(COL_2,movie.getTitle());
             contentValues.put(COL_3,movie.getYear());
-            contentValues.put(COL_4,movie.getDirector());
-            contentValues.put(COL_5,movie.getActors());
-            contentValues.put(COL_6,movie.getRating());
-            contentValues.put(COL_7,movie.getReview());
-            contentValues.put(COL_8,movie.getFavourite());
+            contentValues.put(COL_4,movie.getGenre());
+            contentValues.put(COL_5,movie.getRating());
+            contentValues.put(COL_6,movie.getFavourite());
 
-            long result = myDB.insert(TABLE_NAME,null,contentValues);
+            long result = myDB.insert(TABLE_NAME_MOV,null,contentValues);
 
             if(result==-1){
                 return false;
@@ -83,12 +95,12 @@ import java.util.ArrayList;
         }
 
 
-        //method to get all the movies in the database into an arraylist
+//  method to get all the movies in the database into an arraylist
         public ArrayList<Movie> getAllMovies(){
 
             ArrayList<Movie> movieList = new ArrayList<>();
 
-            String selectStm = "SELECT * FROM " + TABLE_NAME;
+            String selectStm = "SELECT * FROM " + TABLE_NAME_MOV;
 
             myDB = this.getWritableDatabase();
 
@@ -99,23 +111,15 @@ import java.util.ArrayList;
                     Movie movie = new Movie();
                     movie.setTitle(cursor.getString(1));
                     movie.setYear(cursor.getInt(2));
-                    movie.setDirector(cursor.getString(3));
-                    movie.setActors(cursor.getString(4));
-                    movie.setRating(cursor.getInt(5));
-                    movie.setReview(cursor.getString(6));
-
-                    if(cursor.getInt(7)==1){
-                        movie.setFavourite(true);
-                    }
-                    else {
-                        movie.setFavourite(false);}
+                    movie.setGenre(cursor.getString(3));
+                    movie.setRating(cursor.getInt(4));
+                    movie.setFavourite(cursor.getString(5));
 
                     movieList.add(movie);
 
                 }while (cursor.moveToNext());
             }
 
-            movieList.sort(new SortingComparator());
             return movieList;
         }
 
@@ -123,14 +127,13 @@ import java.util.ArrayList;
         //method to make a movie as favourite
         public Boolean updateFavourites(String title, int isFavourite){
 
-
             myDB = this.getWritableDatabase();
 
             ContentValues contentValues = new ContentValues();
 
-            contentValues.put(COL_8,isFavourite);
+            contentValues.put(COL_6,isFavourite);
 
-            long result = myDB.update(TABLE_NAME, contentValues, "TITLE = ?", new String[]{ title });
+            long result = myDB.update(TABLE_NAME_MOV, contentValues, "TITLE = ?", new String[]{ title });
 
             if(result==-1){
                 return false;
@@ -151,13 +154,11 @@ import java.util.ArrayList;
 
             contentValues.put(COL_2,movie.getTitle());
             contentValues.put(COL_3,movie.getYear());
-            contentValues.put(COL_4,movie.getDirector());
-            contentValues.put(COL_5,movie.getActors());
-            contentValues.put(COL_6,movie.getRating());
-            contentValues.put(COL_7,movie.getReview());
-            contentValues.put(COL_8,movie.getFavourite());
+            contentValues.put(COL_4,movie.getGenre());
+            contentValues.put(COL_5,movie.getRating());
+            contentValues.put(COL_6,movie.getFavourite());
 
-            long result = myDB.update(TABLE_NAME, contentValues, "TITLE = ?", new String[]{ title });
+            long result = myDB.update(TABLE_NAME_MOV, contentValues, "TITLE = ?", new String[]{ title });
 
             if(result==-1){
                 return false;
@@ -174,7 +175,7 @@ import java.util.ArrayList;
 
             myDB = this.getWritableDatabase();
 
-            String query = "DELETE FROM " + TABLE_NAME + " WHERE " + COL_2 + " = '" + name + "'";
+            String query = "DELETE FROM " + TABLE_NAME_MOV + " WHERE " + COL_2 + " = '" + name + "'";
 
             myDB.execSQL(query);
         }
