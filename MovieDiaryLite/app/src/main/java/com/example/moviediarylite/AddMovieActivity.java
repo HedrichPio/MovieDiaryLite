@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import com.example.moviediarylite.AlertComponents.AlertDialogandToastMessages;
+import com.example.moviediarylite.Components.AlertDialogandToastMessages;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,4 +1,4 @@
-package com.example.moviediarylite.AlertComponents;
+package com.example.moviediarylite.Components;
 
 import android.app.Activity;
 import android.content.Context;
@@ -27,6 +27,18 @@ public class AlertDialogandToastMessages {
 
     public void showAlertDialogforEmpty(Context context, String messageType, String message){
 
+        AlertDialog.Builder alert = new AlertDialog.Builder(context);
+        alert.setTitle(messageType);
+        alert.setMessage(message);
+        alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+
+
+            }
+        });
+        alert.show();
 
 
     }

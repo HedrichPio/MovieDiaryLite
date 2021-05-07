@@ -15,10 +15,19 @@ public class MovieFunctionsActivity extends AppCompatActivity {
     }
 
 
-    public void addMovie(View view){
+    public void openAddMovie(View view){
 
         Intent addmovie = new Intent(this,AddMovieActivity.class);
         startActivity(addmovie);
 
     }
+
+    public void openViewAllMovies(View view){
+
+        Intent viewAllMovies = new Intent(this,ViewAllMoviesActivity.class);
+        startActivity(viewAllMovies);
+
+    }
+
+
 }
