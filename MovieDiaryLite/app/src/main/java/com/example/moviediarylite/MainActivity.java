@@ -9,11 +9,15 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity {
 
     Animation bottom_animation;
+    Animation top_animation;
 
-    TextView logo;
+    TextView logo_movie;
+    TextView logo_diary;
 
     Handler handler;
 
@@ -23,19 +27,22 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         bottom_animation = AnimationUtils.loadAnimation(this, R.anim.bottom_animation);
+        top_animation = AnimationUtils.loadAnimation(this, R.anim.top_animation);
 
-        logo = findViewById(R.id.logo_main);
-        logo.setAnimation(bottom_animation);
+        logo_movie = findViewById(R.id.logomovie_main);
+        logo_movie.setAnimation(bottom_animation);
+
+        logo_diary = findViewById(R.id.logodiary_main);
+        logo_diary.setAnimation(top_animation);
+
+
 
         handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-                startActivity(intent);
-                finish();
-            }
+        handler.postDelayed(() -> {
+            Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+            startActivity(intent);
+            finish();
         },3000);
-        getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
     }
 }
