@@ -1,4 +1,4 @@
-package com.example.moviediarylite;
+package com.example.moviediarylite.Databases;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.example.moviediarylite.comparators.AlphabeticalSort;
+import com.example.moviediarylite.Movie;
 
 import java.util.ArrayList;
 

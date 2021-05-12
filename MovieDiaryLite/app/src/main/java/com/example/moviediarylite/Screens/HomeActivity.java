@@ -1,10 +1,12 @@
-package com.example.moviediarylite;
+package com.example.moviediarylite.Screens;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import com.example.moviediarylite.R;
 
 public class HomeActivity extends AppCompatActivity {
 

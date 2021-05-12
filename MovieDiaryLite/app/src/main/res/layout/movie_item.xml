@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="4dp"
     android:background="@drawable/rounded_corner_background"
     android:orientation="vertical">
 
@@ -10,7 +9,7 @@
         android:id="@+id/title_textview_mi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="2dp"
+        android:padding="1dp"
         android:textColor="@color/black"
         android:textSize="20sp" />
 

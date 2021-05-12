@@ -1,4 +1,4 @@
-package com.example.moviediarylite;
+package com.example.moviediarylite.Screens;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,8 @@ import android.os.Handler;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
+
+import com.example.moviediarylite.R;
 
 import java.util.Objects;
 

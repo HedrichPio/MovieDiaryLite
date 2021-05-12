@@ -1,4 +1,4 @@
-package com.example.moviediarylite.comparators;
+package com.example.moviediarylite.Comparators;
 
 import com.example.moviediarylite.Movie;
 

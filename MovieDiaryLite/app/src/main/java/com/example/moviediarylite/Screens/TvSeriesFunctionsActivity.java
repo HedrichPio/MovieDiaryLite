@@ -1,8 +1,10 @@
-package com.example.moviediarylite;
+package com.example.moviediarylite.Screens;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.moviediarylite.R;
 
 public class TvSeriesFunctionsActivity extends AppCompatActivity {
 

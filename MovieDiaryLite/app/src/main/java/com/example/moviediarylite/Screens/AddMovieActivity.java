@@ -1,4 +1,4 @@
-package com.example.moviediarylite;
+package com.example.moviediarylite.Screens;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +13,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.moviediarylite.Components.AlertDialogandToastMessages;
+import com.example.moviediarylite.Databases.DatabaseHelper;
+import com.example.moviediarylite.Movie;
+import com.example.moviediarylite.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
