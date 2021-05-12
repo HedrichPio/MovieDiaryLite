@@ -25,23 +25,21 @@ public class AlertDialogandToastMessages {
         alert.show();
     }
 
-    public void showAlertDialogforEmpty(Context context, String messageType, String message){
-
-        AlertDialog.Builder alert = new AlertDialog.Builder(context);
-        alert.setTitle(messageType);
-        alert.setMessage(message);
-        alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-
-
-            }
-        });
-        alert.show();
-
-
-    }
+//    public void showAlertDialogforEmpty(Context context, String messageType, String message){
+//
+//        AlertDialog.Builder alert = new AlertDialog.Builder(context);
+//        alert.setTitle(messageType);
+//        alert.setMessage(message);
+//        alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//
+//
+//            }
+//        });
+//        alert.show();
+//
+//    }
 
 
 }
