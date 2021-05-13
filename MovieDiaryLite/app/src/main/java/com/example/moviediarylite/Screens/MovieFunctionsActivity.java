@@ -31,5 +31,12 @@ public class MovieFunctionsActivity extends AppCompatActivity {
 
     }
 
+    public void openViewFavouriteMovies(View view){
+
+        Intent viewFavouriteMovies = new Intent(this,FavouritesActivity.class);
+        startActivity(viewFavouriteMovies);
+
+    }
+
 
 }
