@@ -3,10 +3,14 @@ package com.example.moviediarylite.Screens;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.SearchView;
+
 
 import com.example.moviediarylite.Components.AlertDialogandToastMessages;
 import com.example.moviediarylite.Components.MovieAdapter;
@@ -18,6 +22,8 @@ import java.util.ArrayList;
 
 public class ViewAllMoviesActivity extends AppCompatActivity {
 
+
+    MovieAdapter adapter;
 
     ListView allmovieslistview_vam;
 
@@ -36,8 +42,26 @@ public class ViewAllMoviesActivity extends AppCompatActivity {
         movielist = DB.getAllMovies();
 
         if (!movielist.isEmpty()) {
+
+            setAdaptertoListView(movielist);
+
+        }
+        else {
+
+            alerts.showAlertDialog(this,"No Movies added", "Please add atleast one Movie to Display");
+
+        }
+
+
+    }
+
+
+
+    private void setAdaptertoListView(ArrayList<Movie> movieArrayList){
+
+
             // Create the adapter to convert the array to views
-            MovieAdapter adapter = new MovieAdapter(this, movielist);
+            adapter = new MovieAdapter(this, movieArrayList);
 
             // Attach the adapter to a ListView
             allmovieslistview_vam.setAdapter(adapter);
@@ -51,14 +75,10 @@ public class ViewAllMoviesActivity extends AppCompatActivity {
 
                     showMovieDetails(selectedMovie);
 
+
                 }
             });
 
-        } else {
-
-            alerts.showAlertDialog(this,"No Movies added", "Please add atleast one Movie to Display");
-
-        }
 
     }
 
@@ -71,5 +91,53 @@ public class ViewAllMoviesActivity extends AppCompatActivity {
                         "Rating :"+ selectedMovie.getFavourite() +"\n" +
                         "is Favourites :"+ selectedMovie.getFavourite());
 
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.search_menu, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.search_item);
+
+        SearchView searchView = (SearchView) searchItem.getActionView();
+        searchView.setQueryHint("Search Here...");
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+
+                ArrayList<Movie> filteredList = new ArrayList<>();
+
+                for(Movie m : DB.getAllMovies()){
+                    if(m.getTitle().toLowerCase().contains(newText.toLowerCase())){
+                        filteredList.add(m);
+                    }
+                }
+
+                if (!filteredList.isEmpty()) {
+
+                    setAdaptertoListView(filteredList);
+
+                }
+                else {
+
+                    alerts.showAlertDialog(ViewAllMoviesActivity.this,"No Results Found", "No Movies matched with the Keyword.");
+
+                }
+                return false;
+            }
+        });
+
+
+        return super.onCreateOptionsMenu(menu);
     }
 }
