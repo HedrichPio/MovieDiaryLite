@@ -5,7 +5,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Build;
 
+import androidx.annotation.RequiresApi;
+
+import com.example.moviediarylite.Comparators.AlphabeticalSort;
 import com.example.moviediarylite.Movie;
 
 import java.util.ArrayList;
@@ -96,6 +100,7 @@ import java.util.ArrayList;
 
 
 //  method to get all the movies in the database into an arraylist
+        @RequiresApi(api = Build.VERSION_CODES.N)
         public ArrayList<Movie> getAllMovies(){
 
             ArrayList<Movie> movieList = new ArrayList<>();
@@ -120,7 +125,26 @@ import java.util.ArrayList;
                 }while (cursor.moveToNext());
             }
 
+            movieList.sort(new AlphabeticalSort());
+
             return movieList;
+        }
+
+
+        @RequiresApi(api = Build.VERSION_CODES.N)
+        public ArrayList<Movie> getAllFavouriteMovies(){
+
+            ArrayList<Movie> favList = new ArrayList<>();
+
+            for(Movie m:getAllMovies()){
+
+                if(m.getFavourite().equalsIgnoreCase("yes")){
+                    favList.add(m);
+                }
+
+            }
+            return favList;
+
         }
 
 

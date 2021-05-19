@@ -1,7 +1,9 @@
 package com.example.moviediarylite.Screens;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -12,6 +14,7 @@ import android.widget.ListView;
 import android.widget.SearchView;
 
 
+import com.example.moviediarylite.Comparators.AlphabeticalSort;
 import com.example.moviediarylite.Components.AlertDialogandToastMessages;
 import com.example.moviediarylite.Components.MovieAdapter;
 import com.example.moviediarylite.Databases.DatabaseHelper;
@@ -26,18 +29,23 @@ public class ViewAllMoviesActivity extends AppCompatActivity {
     MovieAdapter adapter;
 
     ListView allmovieslistview_vam;
+    SearchView searchview_vam;
 
     DatabaseHelper DB = new DatabaseHelper(this);
     ArrayList<Movie> movielist = new ArrayList<>();
 
     AlertDialogandToastMessages alerts = new AlertDialogandToastMessages();
 
+
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_all_movies);
 
         allmovieslistview_vam = findViewById(R.id.allmovieslistview_viewallmovies);
+        searchview_vam = findViewById(R.id.searchview_allmovies);
 
         movielist = DB.getAllMovies();
 
@@ -53,59 +61,8 @@ public class ViewAllMoviesActivity extends AppCompatActivity {
         }
 
 
-    }
+        searchview_vam.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
-
-
-    private void setAdaptertoListView(ArrayList<Movie> movieArrayList){
-
-
-            // Create the adapter to convert the array to views
-            adapter = new MovieAdapter(this, movieArrayList);
-
-            // Attach the adapter to a ListView
-            allmovieslistview_vam.setAdapter(adapter);
-
-            allmovieslistview_vam.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                    // TODO Auto-generated method stub
-
-                    Movie selectedMovie = adapter.getItem(position);
-
-                    showMovieDetails(selectedMovie);
-
-
-                }
-            });
-
-
-    }
-
-    private void showMovieDetails(Movie selectedMovie){
-
-        alerts.showAlertDialog(this, "Movie",
-                "Title :"+ selectedMovie.getTitle() +"\n" +
-                        "Year :"+ selectedMovie.getYear() +"\n" +
-                        "Genre :"+ selectedMovie.getGenre() +"\n" +
-                        "Rating :"+ selectedMovie.getFavourite() +"\n" +
-                        "is Favourites :"+ selectedMovie.getFavourite());
-
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.search_menu, menu);
-
-        MenuItem searchItem = menu.findItem(R.id.search_item);
-
-        SearchView searchView = (SearchView) searchItem.getActionView();
-        searchView.setQueryHint("Search Here...");
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 return false;
@@ -138,6 +95,39 @@ public class ViewAllMoviesActivity extends AppCompatActivity {
         });
 
 
-        return super.onCreateOptionsMenu(menu);
     }
+
+
+
+    private void setAdaptertoListView(ArrayList<Movie> movieArrayList){
+
+
+        adapter = new MovieAdapter(this, movieArrayList);
+
+            allmovieslistview_vam.setAdapter(adapter);
+
+            allmovieslistview_vam.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+
+                    Movie selectedMovie = adapter.getItem(position);
+
+                    showMovieDetails(selectedMovie);
+
+                }
+            });
+    }
+
+
+    private void showMovieDetails(Movie selectedMovie){
+
+        alerts.showAlertDialog(this, "Movie",
+                "Title :"+ selectedMovie.getTitle() +"\n" +
+                        "Year :"+ selectedMovie.getYear() +"\n" +
+                        "Genre :"+ selectedMovie.getGenre() +"\n" +
+                        "Rating :"+ selectedMovie.getFavourite() +"\n" +
+                        "is Favourites :"+ selectedMovie.getFavourite());
+
+    }
+
 }
