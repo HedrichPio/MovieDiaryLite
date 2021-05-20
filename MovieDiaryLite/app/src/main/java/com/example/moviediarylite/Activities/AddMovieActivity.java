@@ -1,11 +1,16 @@
-package com.example.moviediarylite.Screens;
+package com.example.moviediarylite.Activities;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -23,6 +28,8 @@ import java.util.Calendar;
 
 public class AddMovieActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
+    Animation top_animation;
+
     EditText title_edittext_am;
     Spinner year_spinner_am, genre_spinner_am, rating_spinner_am, favourite_spinner_am;
     Button save_button_am;
@@ -39,19 +46,35 @@ public class AddMovieActivity extends AppCompatActivity implements AdapterView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_movie);
 
+        top_animation = AnimationUtils.loadAnimation(this, R.anim.top_animation);
+
+
         title_edittext_am = findViewById(R.id.titleedittext_addmovie);
+        title_edittext_am.setAnimation(top_animation);
+
         year_spinner_am = findViewById(R.id.yearspinner_addmovie);
+        year_spinner_am.setAnimation(top_animation);
+
         genre_spinner_am = findViewById(R.id.genrespinner_addmovie);
+        genre_spinner_am.setAnimation(top_animation);
+
         rating_spinner_am = findViewById(R.id.ratingspinner_addmovie);
+        rating_spinner_am.setAnimation(top_animation);
+
         favourite_spinner_am = findViewById(R.id.favouritespinner_addmovie);
+        favourite_spinner_am.setAnimation(top_animation);
+
 
         save_button_am = findViewById(R.id.savebutton_addmovie);
+        save_button_am.setAnimation(top_animation);
+
 
         setSpinners();
 
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public void saveMovie(View view){
 
         if(save_button_am.getText().equals("Save")){
@@ -90,6 +113,7 @@ public class AddMovieActivity extends AppCompatActivity implements AdapterView.O
 
 
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private void checkandAddMovie(String mtitle, int myear, String mgenre, int mrating, String mfavourite){
 
 

@@ -1,4 +1,4 @@
-package com.example.moviediarylite.Screens;
+package com.example.moviediarylite.Activities;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -20,6 +22,8 @@ import com.example.moviediarylite.SearchFilters.Filters;
 import java.util.ArrayList;
 
 public class FavouritesActivity extends AppCompatActivity {
+
+    Animation top_animation;
 
     ListView fav_movies_listview_fa;
 
@@ -41,8 +45,13 @@ public class FavouritesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favourites);
 
+        top_animation = AnimationUtils.loadAnimation(this, R.anim.top_animation);
+
         fav_movies_listview_fa = findViewById(R.id.favourites_listview_favourites);
+        fav_movies_listview_fa.setAnimation(top_animation);
+
         searchview_fa = findViewById(R.id.searchview_favourites);
+        searchview_fa.setAnimation(top_animation);
 
 
         movielist = DB.getAllFavouriteMovies();

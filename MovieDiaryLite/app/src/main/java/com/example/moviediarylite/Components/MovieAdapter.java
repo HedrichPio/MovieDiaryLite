@@ -36,11 +36,13 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
         // Lookup view for data population
         TextView movietitle_textview = (TextView) convertView.findViewById(R.id.title_textview_mi);
         TextView movieyear_textview = (TextView) convertView.findViewById(R.id.year_textview_mi);
+        TextView moviegenre_textview = (TextView) convertView.findViewById(R.id.genre_textview_mi);
 
 
         // Populate the data into the template view using the data object
         movietitle_textview.setText(movie.getTitle());
         movieyear_textview.setText(String.valueOf(movie.getYear()));
+        moviegenre_textview.setText(movie.getGenre());
 
         // Return the completed view to render on screen
         return convertView;

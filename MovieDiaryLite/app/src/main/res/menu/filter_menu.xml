@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/action"
+        android:title="Action"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/ai"
+        android:title="AI/IT"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/animation"
+        android:title="Animation"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/cartel"
+        android:title="Cartel"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/comedy"
+        android:title="Comedy"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/family"
+        android:title="Family"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/heist"
+        android:title="Heist"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/horror"
+        android:title="Horror"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/racing"
+        android:title="Racing"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/romance"
+        android:title="Romance"
+        app:showAsAction="never"/>
+
+</menu>

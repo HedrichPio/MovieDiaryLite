@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
-    tools:context=".Screens.MovieFunctionsActivity">
+    tools:context=".Activities.MovieFunctionsActivity">
 
     <Button
         android:id="@+id/addmoviebutton_functions"
@@ -15,6 +15,7 @@
         android:layout_marginLeft="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
+        android:layout_marginBottom="8dp"
         android:fontFamily="casual"
         android:onClick="openAddMovie"
         android:padding="10dp"
@@ -27,7 +28,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:strokeColor="@color/dark_blue"
         app:strokeWidth="1dp" />
 
@@ -39,6 +39,7 @@
         android:layout_marginLeft="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
+        android:layout_marginBottom="8dp"
         android:fontFamily="casual"
         android:onClick="openViewAllMovies"
         android:padding="10dp"
@@ -51,7 +52,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addmoviebutton_functions"
         app:strokeColor="@color/dark_blue"
         app:strokeWidth="1dp" />
 
@@ -63,6 +63,7 @@
         android:layout_marginLeft="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
+        android:layout_marginBottom="16dp"
         android:fontFamily="casual"
         android:onClick="openViewFavouriteMovies"
         android:padding="10dp"
@@ -75,7 +76,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewmoviesbutton_functions"
         app:strokeColor="@color/dark_blue"
         app:strokeWidth="1dp" />
+
+    <ImageView
+        android:id="@+id/movietape_imageview_moviefunctions"
+        android:layout_width="0dp"
+        android:layout_height="250dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/reel_tape" />
 </androidx.constraintlayout.widget.ConstraintLayout>

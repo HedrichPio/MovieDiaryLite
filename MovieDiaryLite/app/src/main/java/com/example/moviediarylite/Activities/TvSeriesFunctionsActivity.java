@@ -1,4 +1,4 @@
-package com.example.moviediarylite.Screens;
+package com.example.moviediarylite.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 

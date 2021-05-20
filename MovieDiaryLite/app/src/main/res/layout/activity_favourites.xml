@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
-    tools:context=".Screens.FavouritesActivity">
+    tools:context=".Activities.FavouritesActivity">
 
     <ListView
         android:id="@+id/favourites_listview_favourites"
@@ -32,7 +32,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="12dp"
         android:layout_marginRight="12dp"
-        android:background="@drawable/light_gray_background_small"
+        android:background="@drawable/lightgray_background_small"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

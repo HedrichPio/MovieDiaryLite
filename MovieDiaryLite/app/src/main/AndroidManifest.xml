@@ -9,15 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MovieDiaryLite">
-        <activity android:name=".Screens.FavouritesActivity"></activity>
-        <activity android:name=".Screens.ViewAllMoviesActivity" />
-        <activity android:name=".Screens.AddMovieActivity" />
-        <activity android:name=".Screens.TvSeriesFunctionsActivity" />
-        <activity android:name=".Screens.MovieFunctionsActivity" />
+        <activity android:name=".Activities.FavouritesActivity"></activity>
+        <activity android:name=".Activities.ViewAllMoviesActivity" />
+        <activity android:name=".Activities.AddMovieActivity" />
+        <activity android:name=".Activities.TvSeriesFunctionsActivity" />
+        <activity android:name=".Activities.MovieFunctionsActivity" />
         <activity
-            android:name=".Screens.HomeActivity"
+            android:name=".Activities.HomeActivity"
             android:label="Home" />
-        <activity android:name=".Screens.MainActivity">
+        <activity android:name=".Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
