@@ -251,7 +251,7 @@ public class ViewAllMoviesActivity extends AppCompatActivity implements PopupMen
                 "Title :"+ selectedMovie.getTitle() +"\n" +
                         "Year :"+ selectedMovie.getYear() +"\n" +
                         "Genre :"+ selectedMovie.getGenre() +"\n" +
-                        "Rating :"+ selectedMovie.getFavourite() +"\n" +
+                        "Rating :"+ selectedMovie.getRating() +"\n" +
                         "is Favourites :"+ selectedMovie.getFavourite());
 
     }
